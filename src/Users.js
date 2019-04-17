@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
+import {  fetchUsersAsyncActionCreator } from './state/users'
 
 const Users = (props) => {
     return (
@@ -23,6 +24,12 @@ const Users = (props) => {
                             )
                         )
             }
+            <button
+                onClick={props._fetchUsers}
+
+            >
+                Załaduj
+                </button>
         </div>
     )
 }
@@ -33,7 +40,9 @@ const mapStateToProps = state => ({
     _isError: state.users.isError,
 })
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+    _fetchUsers: () => dispatch(fetchUsersAsyncActionCreator(10)),
+})
 
 export default connect(
     mapStateToProps,
