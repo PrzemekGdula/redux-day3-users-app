@@ -1,5 +1,19 @@
 const SET = 'users/SET'
 
+export const fetchUsersAsyncActionCreator = () => (dispatch, getState) => {
+
+    fetch('https://randomuser.me/api')
+        .then(r => r.json())
+        .then(data => {
+            dispatch(
+                setUsersActionCreator(
+                    data.results
+                )
+            )
+        })
+
+}
+
 export const setUsersActionCreator = users => ({
     type: SET,
     users,
